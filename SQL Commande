@@ -1,0 +1,47 @@
+-- Création de la table Gymnase
+CREATE TABLE Gymnase (
+    Nom VARCHAR(255) PRIMARY KEY,
+    Adresse VARCHAR(255),
+    NumeroTelephone VARCHAR(15)
+);
+
+-- Création de la table Membre
+CREATE TABLE Membre (
+    IdentifiantUnique INT PRIMARY KEY,
+    Nom VARCHAR(255),
+    Prenom VARCHAR(255),
+    Adresse VARCHAR(255),
+    DateNaissance DATE,
+    Sexe VARCHAR(1),
+    Gymnase_ID VARCHAR(255),  -- Clé étrangère référençant Gymnase
+    FOREIGN KEY (Gymnase_ID) REFERENCES Gymnase(Nom)
+);
+
+-- Création de la table Session
+CREATE TABLE Session (
+    TypeSport VARCHAR(255),
+    Horaire VARCHAR(20),
+    CapaciteMaxMembres INT,
+    Gymnase_ID VARCHAR(255),  -- Clé étrangère référençant Gymnase
+    PRIMARY KEY (TypeSport, Horaire),  -- Clé primaire composite
+    FOREIGN KEY (Gymnase_ID) REFERENCES Gymnase(Nom)
+);
+
+-- Création de la table Coach
+CREATE TABLE Coach (
+    Nom VARCHAR(255),
+    Prenom VARCHAR(255),
+    Age INT,
+    Specialite VARCHAR(255),
+    Session_ID VARCHAR(255) PRIMARY KEY,  -- Clé étrangère référençant Session
+    FOREIGN KEY (Session_ID) REFERENCES Session(TypeSport)
+);
+
+-- Création de la table Membre_Session (table de liaison)
+CREATE TABLE Membre_Session (
+    Membre_ID INT,
+    Session_TypeSport VARCHAR(255),
+    PRIMARY KEY (Membre_ID, Session_TypeSport),  -- Clé primaire composite
+    FOREIGN KEY (Membre_ID) REFERENCES Membre(IdentifiantUnique),
+    FOREIGN KEY (Session_TypeSport) REFERENCES Session(TypeSport)
+);
