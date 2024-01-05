@@ -1,0 +1,14 @@
+-- Exporter la table Gymnase
+SELECT * FROM Gymnase INTO OUTFILE '/chemin/vers/gymnase.csv' FIELDS TERMINATED BY ',';
+
+-- Exporter la table Membre
+SELECT * FROM Membre INTO OUTFILE '/chemin/vers/membre.csv' FIELDS TERMINATED BY ',';
+
+-- Exporter la table Session
+SELECT * FROM Session INTO OUTFILE '/chemin/vers/session.csv' FIELDS TERMINATED BY ',';
+
+-- Exporter la table Coach
+SELECT * FROM Coach INTO OUTFILE '/chemin/vers/coach.csv' FIELDS TERMINATED BY ',';
+
+-- Exporter la table Membre_Session
+SELECT * FROM Membre_Session INTO OUTFILE '/chemin/vers/membre_session.csv' FIELDS TERMINATED BY ',';
